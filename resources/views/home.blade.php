@@ -162,7 +162,7 @@
     </section>
 
     {{-- Trending hari Ini --}}
-    <section>
+    <section class="mb-5">
         <div x-data="{
             currentSlide: 0,
             slidesToShow: 4, // Default untuk desktop
@@ -175,7 +175,7 @@
                 { image: '{{ asset('img/gates-7584115_1280.png') }}', title: 'Dunia Digital', description: 'Internet membawa perubahan besar.' }
             ],
             autoSlideInterval: null,
-    
+        
             next() {
                 if (this.currentSlide < this.slides.length - this.slidesToShow) {
                     this.currentSlide++;
@@ -183,7 +183,7 @@
                     this.currentSlide = 0;
                 }
             },
-    
+        
             prev() {
                 if (this.currentSlide > 0) {
                     this.currentSlide--;
@@ -191,15 +191,15 @@
                     this.currentSlide = this.slides.length - this.slidesToShow;
                 }
             },
-    
+        
             startAutoSlide() {
                 this.autoSlideInterval = setInterval(() => { this.next(); }, 3000);
             },
-    
+        
             stopAutoSlide() {
                 clearInterval(this.autoSlideInterval);
             },
-    
+        
             updateSlidesToShow() {
                 if (window.innerWidth >= 1024) {
                     this.slidesToShow = 4; // Desktop
@@ -214,63 +214,69 @@
         }" x-init="updateSlidesToShow();
         startAutoSlide();
         window.addEventListener('resize', updateSlidesToShow)" class="container mx-auto mt-8 px-4 sm:px-6 lg:px-8">
-    
-        <h1 class="text-3xl sm:text-5xl font-bold text-center font-audiowide">
-            Trending Hari Ini
-        </h1>
-    
-        <div class="relative overflow-hidden w-full max-w-6xl mx-auto mt-6 overflow-x-hidden" @mouseover="stopAutoSlide()" @mouseleave="startAutoSlide()">
-            <div class="flex transition-transform duration-500 gap-4"
-                :style="'transform: translateX(-' + (currentSlide * (100 / slidesToShow)) + '%);'">
-    
-                <template x-for="(slide, index) in slides" :key="index">
-                    <div :class="{
-                        'w-1/4': slidesToShow === 4,
-                        'w-1/3': slidesToShow === 3,
-                        'w-1/2': slidesToShow === 2,
-                        'w-full': slidesToShow === 1
-                    }" 
-                    class="flex-shrink-0 px-2">
-                        <div class="group relative bg-white shadow-lg rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
-                            <img :src="slide.image" alt="Slide Image" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h2 class="text-lg font-bold text-gray-800 group-hover:text-blue-600 transition-all duration-300"
-                                    x-text="slide.title"></h2>
-                                <p class="text-gray-600 text-sm mt-2" x-text="slide.description"></p>
-                            </div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm shadow-md hover:bg-blue-700 transition-all duration-300">
-                                    Selengkapnya
-                                </a>
+
+            <h1 class="text-3xl sm:text-5xl font-bold text-center font-audiowide">
+                Trending Hari Ini
+            </h1>
+
+            <div class="relative overflow-hidden w-full max-w-6xl mx-auto mt-6 overflow-x-hidden"
+                @mouseover="stopAutoSlide()" @mouseleave="startAutoSlide()">
+                <div class="flex transition-transform duration-500"
+                    :style="'transform: translateX(-' + (currentSlide * (100 / slidesToShow)) + '%);'">
+
+                    <template x-for="(slide, index) in slides" :key="index">
+                        <div :class="{
+                            'w-1/4': slidesToShow === 4,
+                            'w-1/3': slidesToShow === 3,
+                            'w-1/2': slidesToShow === 2,
+                            'w-full': slidesToShow === 1
+                        }"
+                            class="flex-shrink-0 px-2">
+                            <div
+                                class="group relative bg-white shadow-lg rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+                                <img :src="slide.image" alt="Slide Image" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h2 class="text-lg font-bold text-gray-800 group-hover:text-blue-600 transition-all duration-300"
+                                        x-text="slide.title"></h2>
+                                    <p class="text-gray-600 text-sm mt-2" x-text="slide.description"></p>
+                                </div>
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                </div>
+                                <div
+                                    class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                                    <a href="#"
+                                        class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm shadow-md hover:bg-blue-700 transition-all duration-300">
+                                        Selengkapnya
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </template>
-            </div>
-    
-            <!-- Tombol Sebelumnya -->
-            <button @click="prev(); stopAutoSlide(); startAutoSlide()"
-                class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full shadow-md hover:bg-gray-900 transition">
-                ❮
-            </button>
-    
-            <!-- Tombol Berikutnya -->
-            <button @click="next(); stopAutoSlide(); startAutoSlide()"
-                class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full shadow-md hover:bg-gray-900 transition">
-                ❯
-            </button>
-        </div>
-    
-        <div class="text-center mt-5">
-            <button class="bg-blue-400 border text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
-                Cek Yang Lagi Trending!
-            </button>
-        </div>
-    </div>
-    
+                    </template>
+                </div>
 
+                <!-- Tombol Sebelumnya -->
+                <button @click="prev(); stopAutoSlide(); startAutoSlide()"
+                    class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full shadow-md hover:bg-gray-900 transition">
+                    ❮
+                </button>
+
+                <!-- Tombol Berikutnya -->
+                <button @click="next(); stopAutoSlide(); startAutoSlide()"
+                    class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full shadow-md hover:bg-gray-900 transition">
+                    ❯
+                </button>
+            </div>
+
+            <div class="text-center mt-5">
+                <button class="bg-blue-400 border text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+                    Cek Yang Lagi Trending!
+                </button>
+            </div>
+        </div>
     </section>
+
+    <x-footer2></x-footer2>
 
 </body>
 

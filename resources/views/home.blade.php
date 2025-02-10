@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&family=Ubuntu&display=swap"
         rel="stylesheet">
     <link
@@ -19,13 +20,13 @@
 <body>
     <x-navbar></x-navbar>
 
-    <main class="bg-blue-400">
+    <main class="bg-blue-400" style="box-sizing: border-box">
         <!-- Hero Section -->
         <section class="flex flex-col sm:flex-row items-center container mx-auto px-4 py-10">
-            <div class="w-full sm:w-1/2 flex justify-center">
+            <div data-aos="fade-right" class="w-full sm:w-1/2 flex justify-center">
                 <img src="{{ asset('img/computer-8671934_1280.png') }}" alt="Logo" class="w-full sm:w-8/12">
             </div>
-            <div class="w-full sm:w-1/2 text-center sm:text-left">
+            <div data-aos="fade-left" class="w-full sm:w-1/2 text-center sm:text-left">
                 <h1 class="text-4xl sm:text-5xl font-bold uppercase font-audiowide">
                     Bersama Kominfosandi Membangun Teknologi untuk Negeri
                 </h1>
@@ -37,8 +38,8 @@
 
         <!-- Agenda Hari Ini -->
         <section class="container mx-auto px-4 py-10">
-            <div class="flex flex-col-reverse sm:flex-row items-center">
-                <div class="w-full sm:w-1/2">
+            <div  class="flex flex-col-reverse sm:flex-row items-center">
+                <div data-aos="fade-right" class="w-full sm:w-1/2">
                     <h1 class="text-3xl sm:text-5xl font-bold text-center sm:text-right font-audiowide ">
                         Agenda Hari Ini
                     </h1>
@@ -72,7 +73,7 @@
                     </div>
                 </div>
 
-                <div class="w-full sm:w-1/2 flex justify-center">
+                <div data-aos="fade-left" class="w-full sm:w-1/2 flex justify-center">
                     <img src="{{ asset('img/gates-7584115_1280.png') }}" alt="Logo" class="w-full sm:w-8/12">
                 </div>
             </div>
@@ -81,10 +82,10 @@
         <!-- Berita Hari Ini -->
         <section class="container mx-auto px-4 py-10">
             <div class="flex flex-col sm:flex-row items-center">
-                <div class="w-full sm:w-1/2 flex justify-center">
+                <div data-aos="fade-right" class="w-full sm:w-1/2 flex justify-center">
                     <img src="{{ asset('img/man-4365597_1920.png') }}" alt="Logo" class="w-full sm:w-8/12">
                 </div>
-                <div class="w-full sm:w-1/2">
+                <div data-aos="fade-left" class="w-full sm:w-1/2">
                     <h1 class="text-3xl sm:text-5xl font-bold text-center sm:text-left font-audiowide text-red-600 ">
                         Trending Hari Ini
                     </h1>
@@ -118,45 +119,40 @@
                         stopAutoSlide() {
                             clearInterval(this.autoSlideInterval);
                         }
-                    }"
-                    x-init="startAutoSlide()"
-                    class="relative w-full max-w-4xl mx-auto overflow-hidden mt-6">
-                    
-                    <!-- Carousel Wrapper -->
-                    <div class="flex transition-transform duration-500"
-                        :style="'transform: translateX(-' + (currentSlide * 50) + '%);'">
-                        
-                        <template x-for="(slide, index) in slides" :key="index">
-                            <div class="w-1/2 flex-shrink-0 px-3">
-                                <div class="bg-white shadow-lg rounded-lg overflow-hidden h-72">
-                                    <img :src="slide.image" alt="Slide Image" class="w-full h-40 object-cover">
-                                    <div class="p-4">
-                                        <h2 class="text-lg font-bold text-gray-800" x-text="slide.title"></h2>
-                                        <p class="text-gray-600 text-sm mt-2" x-text="slide.description"></p>
+                    }" x-init="startAutoSlide()"
+                        class="relative w-full max-w-4xl mx-auto overflow-hidden mt-6">
+
+                        <!-- Carousel Wrapper -->
+                        <div class="flex transition-transform duration-500"
+                            :style="'transform: translateX(-' + (currentSlide * 50) + '%);'">
+
+                            <template x-for="(slide, index) in slides" :key="index">
+                                <div class="w-1/2 flex-shrink-0 px-3">
+                                    <div class="bg-white shadow-lg rounded-lg overflow-hidden h-72">
+                                        <img :src="slide.image" alt="Slide Image" class="w-full h-40 object-cover">
+                                        <div class="p-4">
+                                            <h2 class="text-lg font-bold text-gray-800" x-text="slide.title"></h2>
+                                            <p class="text-gray-600 text-sm mt-2" x-text="slide.description"></p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </template>
-                    </div>
-                    
-                    <!-- Navigation Buttons -->
-                    <button @click="prev(); stopAutoSlide(); startAutoSlide()"
-                        class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full shadow-md hover:bg-gray-900 transition">
-                        ❮
-                    </button>
-                    
-                    <button @click="next(); stopAutoSlide(); startAutoSlide()"
-                        class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full shadow-md hover:bg-gray-900 transition">
-                        ❯
-                    </button>
-                </div>
-                
-                    
+                            </template>
+                        </div>
 
+                        <!-- Navigation Buttons -->
+                        <button @click="prev(); stopAutoSlide(); startAutoSlide()"
+                            class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full shadow-md hover:bg-gray-900 transition">
+                            ❮
+                        </button>
+
+                        <button @click="next(); stopAutoSlide(); startAutoSlide()"
+                            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full shadow-md hover:bg-gray-900 transition">
+                            ❯
+                        </button>
+                    </div>
                     <div class="text-center mt-5">
-                        <button
-                            class="bg-blue-400 border text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
-                            Cek Yang Lagi Trending! 
+                        <button class="bg-blue-400 border text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+                            Cek Yang Lagi Trending!
                         </button>
                     </div>
                 </div>
@@ -164,10 +160,11 @@
         </section>
 
         {{-- Trending hari Ini --}}
-        <section class="mb-5">
-            <div x-data="{
+        <section class="pb-4">
+            <div data-aos="fade-up" x-data="{
                 currentSlide: 0,
-                slidesToShow: 4, // Default untuk desktop
+                slidesToShow: 4,
+                containerWidth: 0,
                 slides: [
                     { image: '{{ asset('img/Dirgahayu RI 79 Live Instagram Design Canva.jpg') }}', title: 'Hari Kemerdekaan', description: 'Ayo Rayakan Hari Kemerdekaan Republik Indonesia ke 79.' },
                     { image: '{{ asset('img/melestarikan budaya di era digitalisasi.jpg') }}', title: 'Melestarikan Budaya', description: 'Jaga budaya kita tetap hidup di era digitalisasi.' },
@@ -177,7 +174,7 @@
                     { image: '{{ asset('img/gates-7584115_1280.png') }}', title: 'Dunia Digital', description: 'Internet membawa perubahan besar.' }
                 ],
                 autoSlideInterval: null,
-            
+        
                 next() {
                     if (this.currentSlide < this.slides.length - this.slidesToShow) {
                         this.currentSlide++;
@@ -185,7 +182,7 @@
                         this.currentSlide = 0;
                     }
                 },
-            
+        
                 prev() {
                     if (this.currentSlide > 0) {
                         this.currentSlide--;
@@ -193,46 +190,54 @@
                         this.currentSlide = this.slides.length - this.slidesToShow;
                     }
                 },
-            
+        
                 startAutoSlide() {
                     this.autoSlideInterval = setInterval(() => { this.next(); }, 3000);
                 },
-            
+        
                 stopAutoSlide() {
                     clearInterval(this.autoSlideInterval);
                 },
-            
+        
                 updateSlidesToShow() {
                     if (window.innerWidth >= 1024) {
-                        this.slidesToShow = 4; // Desktop
+                        this.slidesToShow = 4;
                     } else if (window.innerWidth >= 768) {
-                        this.slidesToShow = 3; // Tablet
+                        this.slidesToShow = 3;
                     } else if (window.innerWidth >= 640) {
-                        this.slidesToShow = 2; // HP Medium
+                        this.slidesToShow = 2;
                     } else {
-                        this.slidesToShow = 1; // HP Kecil
+                        this.slidesToShow = 1;
                     }
+                    this.updateContainerWidth();
+                },
+        
+                updateContainerWidth() {
+                    this.containerWidth = 100 / this.slidesToShow;
+                    this.$nextTick(() => {
+                        this.currentSlide = 0; // Reset posisi setelah ukuran berubah
+                    });
                 }
-            }" x-init="updateSlidesToShow();
+            }" 
+            x-init="updateSlidesToShow();
             startAutoSlide();
-            window.addEventListener('resize', updateSlidesToShow)" class="container mx-auto mt-8 px-4 sm:px-6 lg:px-8">
-
+            window.addEventListener('resize', () => {
+                updateSlidesToShow();
+                $nextTick(() => updateContainerWidth());
+            })"
+            class="container mx-auto mt-8 px-4 sm:px-6 lg:px-8">
+        
                 <h1 class="text-3xl sm:text-5xl font-bold text-center font-audiowide">
                     Berita kita hari ini
                 </h1>
-
-                <div class="relative overflow-hidden w-full max-w-6xl mx-auto mt-6 overflow-x-hidden"
+        
+                <div class="relative max-w-full overflow-hidden mx-auto mt-6"
                     @mouseover="stopAutoSlide()" @mouseleave="startAutoSlide()">
                     <div class="flex transition-transform duration-500"
-                        :style="'transform: translateX(-' + (currentSlide * (100 / slidesToShow)) + '%);'">
-
+                        :style="'transform: translateX(-' + (currentSlide * containerWidth) + '%);'">
+        
                         <template x-for="(slide, index) in slides" :key="index">
-                            <div :class="{
-                                'w-1/4': slidesToShow === 4,
-                                'w-1/3': slidesToShow === 3,
-                                'w-1/2': slidesToShow === 2,
-                                'w-full': slidesToShow === 1
-                            }"
+                            <div :style="'width:' + containerWidth + '%'"
                                 class="flex-shrink-0 px-2">
                                 <div
                                     class="group relative bg-white shadow-lg rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
@@ -256,20 +261,20 @@
                             </div>
                         </template>
                     </div>
-
+        
                     <!-- Tombol Sebelumnya -->
                     <button @click="prev(); stopAutoSlide(); startAutoSlide()"
                         class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full shadow-md hover:bg-gray-900 transition">
                         ❮
                     </button>
-
+        
                     <!-- Tombol Berikutnya -->
                     <button @click="next(); stopAutoSlide(); startAutoSlide()"
                         class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full shadow-md hover:bg-gray-900 transition">
                         ❯
                     </button>
                 </div>
-
+        
                 <div class="text-center mt-5">
                     <button class="bg-blue-400 border text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
                         Cek Berita Lainnya
@@ -277,9 +282,20 @@
                 </div>
             </div>
         </section>
+                
     </main>
 
     <x-footer2></x-footer2>
+
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000, // Durasi animasi (1 detik)
+            once: true, // Hanya berjalan sekali
+            delay: 200 // Waktu delay sebelum mulai
+        });
+    </script>
 
 </body>
 

@@ -35,7 +35,6 @@
                 <ul class="space-y-2">
                     <li><a href="#" class="hover:text-gray-400 transition">Tentang Kami</a></li>
                     <li><a href="#" class="hover:text-gray-400 transition">Layanan</a></li>
-                    <li><a href="#" class="hover:text-gray-400 transition">Karir</a></li>
                     <li><a href="#" class="hover:text-gray-400 transition">Kebijakan Privasi</a></li>
                     <li><a href="#" class="hover:text-gray-400 transition">Syarat & Ketentuan</a></li>
                 </ul>

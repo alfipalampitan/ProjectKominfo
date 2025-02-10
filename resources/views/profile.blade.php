@@ -27,10 +27,10 @@
                 Profile
             </h1>
             <div class="flex flex-col sm:flex-row items-center container mx-auto px-4 py-10">
-                <div class="w-full sm:w-1/2 flex justify-center border-b-4">
+                <div data-aos="fade-left" class="w-full sm:w-1/2 flex justify-center border-b-4">
                     <img src="{{ asset('img/pngwing.com.png') }}" alt="Logo" class="w-full sm:w-8/12">
                 </div>
-                <div class="w-full sm:w-1/2 text-center sm:text-left">
+                <div data-aos="fade-right" class="w-full sm:w-1/2 text-center sm:text-left">
                     <h1 class="text-4xl sm:text-5xl font-bold uppercase font-sans">
                         Mesut Ozil
                     </h1>

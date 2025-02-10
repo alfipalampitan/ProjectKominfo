@@ -1,8 +1,5 @@
 <head>
-    <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    </head>
-    
 </head>
 <footer class="bg-blue-600 text-white py-10">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -12,17 +9,17 @@
             <div class="text-center md:text-left">
                 <!-- Icon -->
                 <div class="flex justify-center md:justify-start space-x-4 mb-4">
-                    <a href="#" class="bg-transparent p-3 rounded-full hover:bg-gray-700 transition">
+                    <a href="https://facebook.com" class="iconbg">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="#" class="bg-transparent p-3 rounded-full hover:bg-gray-700 transition">
+                    <a href="https://x.com" class="iconbg">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="#" class="bg-transparent p-3 rounded-full hover:bg-gray-700 transition">
+                    <a href="https://instagram.com" class="iconbg">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="#" class="bg-transparent p-3 rounded-full hover:bg-gray-700 transition">
-                        <i class="fab fa-linkedin-in"></i>
+                    <a href="https://youtube.com" class="iconbg">
+                        <i class="fab fa-youtube"></i>
                     </a>
                 </div>
 

@@ -1,25 +1,37 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('home');
 });
+
 Route::get('/home', function () {
-    return view('home',['title' => 'Beranda']);
+    return view('home');
 });
-Route::get('/profile', function () {
-    return view('profile',['title' => 'Profile']);
-});
+
 Route::get('/layanan', function () {
-    return view('layanan',['title' => 'layanan']);
+    return view('layanan',['title' => 'Layanan']);
 });
-Route::get('/dokumen', function () {
-    return view('dokumen',['title' => 'dokumen']);
+
+Route::get('/profile', function () {
+    return view('profile',['title' => 'profile']);
 });
-Route::get('/peraturan', function () {
-    return view('peraturan',['title' => 'peraturan']);
+
+
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin', function () {
+        return view('admin.admin'); // Sesuaikan dengan lokasi file Blade
+    })->name('admin.dashboard');
 });
-Route::get('/galeri', function () {
-    return view('galeri',['title' => 'galeri']);
-});
+
+
+require __DIR__.'/auth.php';
+

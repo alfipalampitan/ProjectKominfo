@@ -19,10 +19,9 @@
 
 <body>
     <x-navbar></x-navbar>
-
-    <main class="bg-blue-400" style="box-sizing: border-box">
+    <main class="bg-white" style="box-sizing: border-box">
         <!-- Hero Section -->
-        <section class="flex flex-col sm:flex-row items-center container mx-auto px-4 py-10">
+        <section class="flex flex-col sm:flex-row items-center container mx-auto px-4 py-10 mt-10">
             <div data-aos="fade-right" class="w-full sm:w-1/2 flex justify-center">
                 <img src="{{ asset('img/computer-8671934_1280.png') }}" alt="Logo" class="w-full sm:w-8/12">
             </div>
@@ -79,8 +78,8 @@
             </div>
         </section>
 
-        <!-- Berita Hari Ini -->
-        <section class="container mx-auto px-4 py-10">
+        <!-- Trending Hari Ini -->
+        <section class="container mx-auto px-4 py-10 bg-slate-100 rounded-2xl hover:-translate-y-4 transition-transform hover:shadow-xl">
             <div class="flex flex-col sm:flex-row items-center">
                 <div data-aos="fade-right" class="w-full sm:w-1/2 flex justify-center">
                     <img src="{{ asset('img/man-4365597_1920.png') }}" alt="Logo" class="w-full sm:w-8/12">
@@ -159,7 +158,7 @@
             </div>
         </section>
 
-        {{-- Trending hari Ini --}}
+        {{-- Berita hari Ini --}}
         <section class="pb-4">
             <div data-aos="fade-up" x-data="{
                 currentSlide: 0,

@@ -15,11 +15,21 @@
 }
 
 .noactive {
-    @apply text-white hover:underline hover:underline-offset-4 hover:decoration-2
+    @apply relative text-white hover:no-underline font-semibold;
+}
+
+.noactive::after {
+    content: '';
+    @apply absolute left-0 bottom-0 w-full h-1 bg-white rounded-full 
+           scale-x-0 transition-transform duration-300 origin-left;
+}
+
+.noactive:hover::after {
+    @apply scale-x-100;
 }
 
 .dropdown {
-    @apply absolute left-0 mt-2 w-48 bg-white text-black rounded shadow-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300
+    @apply absolute left-0 mt-2 w-48 bg-blue-500 text-black rounded shadow-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300
 }
 
 .bgdropdown {

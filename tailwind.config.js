@@ -13,6 +13,10 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                audiowide: ["Audiowide", "cursive"],
+                charm: ["Charm", "cursive"],
+                oxygen: ["Oxygen", "sans-serif"],
+                ubuntu: ["Ubuntu", "sans-serif"],
             },
         },
     },

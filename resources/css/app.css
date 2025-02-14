@@ -40,3 +40,9 @@ html, body {
     overflow-x: hidden;
     max-width: 100%;
 }
+
+.bg-custom {
+    background-image: url('/public/img/bgfotologin1.jpg');
+    background-size: cover;
+    background-position: center;
+}

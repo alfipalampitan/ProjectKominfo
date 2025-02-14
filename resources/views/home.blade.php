@@ -21,23 +21,28 @@
     <x-navbar></x-navbar>
     <main class="bg-white" style="box-sizing: border-box">
         <!-- Hero Section -->
+        @php
+            $landingPage = \App\Models\LandingPage::first();
+        @endphp
+
         <section class="flex flex-col sm:flex-row items-center container mx-auto px-4 py-10 mt-10">
             <div data-aos="fade-right" class="w-full sm:w-1/2 flex justify-center">
-                <img src="{{ asset('img/computer-8671934_1280.png') }}" alt="Logo" class="w-full sm:w-8/12">
+                <img src="{{ asset('storage/' . $landingPage->image) }}" alt="Logo" class="w-full sm:w-8/12">
             </div>
             <div data-aos="fade-left" class="w-full sm:w-1/2 text-center sm:text-left">
                 <h1 class="text-4xl sm:text-5xl font-bold uppercase font-audiowide">
-                    Bersama Kominfosandi Membangun Teknologi untuk Negeri
+                    {{ $landingPage->title }}
                 </h1>
                 <p class="mt-5 font-mono">
-                    Dinas Komunikasi dan Informatika dan Persandian Membangun Teknologi untuk Negeri
+                    {{ $landingPage->description }}
                 </p>
             </div>
         </section>
 
+
         <!-- Agenda Hari Ini -->
         <section class="container mx-auto px-4 py-10">
-            <div  class="flex flex-col-reverse sm:flex-row items-center">
+            <div class="flex flex-col-reverse sm:flex-row items-center">
                 <div data-aos="fade-right" class="w-full sm:w-1/2">
                     <h1 class="text-3xl sm:text-5xl font-bold text-center sm:text-right font-audiowide ">
                         Agenda Hari Ini
@@ -79,7 +84,8 @@
         </section>
 
         <!-- Trending Hari Ini -->
-        <section class="container mx-auto px-4 py-10 bg-slate-100 rounded-2xl hover:-translate-y-4 transition-transform hover:shadow-xl">
+        <section
+            class="container mx-auto px-4 py-10 bg-slate-100 rounded-2xl hover:-translate-y-4 transition-transform hover:shadow-xl">
             <div class="flex flex-col sm:flex-row items-center">
                 <div data-aos="fade-right" class="w-full sm:w-1/2 flex justify-center">
                     <img src="{{ asset('img/man-4365597_1920.png') }}" alt="Logo" class="w-full sm:w-8/12">
@@ -173,7 +179,7 @@
                     { image: '{{ asset('img/gates-7584115_1280.png') }}', title: 'Dunia Digital', description: 'Internet membawa perubahan besar.' }
                 ],
                 autoSlideInterval: null,
-        
+            
                 next() {
                     if (this.currentSlide < this.slides.length - this.slidesToShow) {
                         this.currentSlide++;
@@ -181,7 +187,7 @@
                         this.currentSlide = 0;
                     }
                 },
-        
+            
                 prev() {
                     if (this.currentSlide > 0) {
                         this.currentSlide--;
@@ -189,15 +195,15 @@
                         this.currentSlide = this.slides.length - this.slidesToShow;
                     }
                 },
-        
+            
                 startAutoSlide() {
                     this.autoSlideInterval = setInterval(() => { this.next(); }, 3000);
                 },
-        
+            
                 stopAutoSlide() {
                     clearInterval(this.autoSlideInterval);
                 },
-        
+            
                 updateSlidesToShow() {
                     if (window.innerWidth >= 1024) {
                         this.slidesToShow = 4;
@@ -210,34 +216,32 @@
                     }
                     this.updateContainerWidth();
                 },
-        
+            
                 updateContainerWidth() {
                     this.containerWidth = 100 / this.slidesToShow;
                     this.$nextTick(() => {
                         this.currentSlide = 0; // Reset posisi setelah ukuran berubah
                     });
                 }
-            }" 
-            x-init="updateSlidesToShow();
+            }" x-init="updateSlidesToShow();
             startAutoSlide();
             window.addEventListener('resize', () => {
                 updateSlidesToShow();
                 $nextTick(() => updateContainerWidth());
             })"
-            class="container mx-auto mt-8 px-4 sm:px-6 lg:px-8">
-        
+                class="container mx-auto mt-8 px-4 sm:px-6 lg:px-8">
+
                 <h1 class="text-3xl sm:text-5xl font-bold text-center font-audiowide">
                     Berita kita hari ini
                 </h1>
-        
-                <div class="relative max-w-full overflow-hidden mx-auto mt-6"
-                    @mouseover="stopAutoSlide()" @mouseleave="startAutoSlide()">
+
+                <div class="relative max-w-full overflow-hidden mx-auto mt-6" @mouseover="stopAutoSlide()"
+                    @mouseleave="startAutoSlide()">
                     <div class="flex transition-transform duration-500"
                         :style="'transform: translateX(-' + (currentSlide * containerWidth) + '%);'">
-        
+
                         <template x-for="(slide, index) in slides" :key="index">
-                            <div :style="'width:' + containerWidth + '%'"
-                                class="flex-shrink-0 px-2">
+                            <div :style="'width:' + containerWidth + '%'" class="flex-shrink-0 px-2">
                                 <div
                                     class="group relative bg-white shadow-lg rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
                                     <img :src="slide.image" alt="Slide Image" class="w-full h-48 object-cover">
@@ -260,20 +264,20 @@
                             </div>
                         </template>
                     </div>
-        
+
                     <!-- Tombol Sebelumnya -->
                     <button @click="prev(); stopAutoSlide(); startAutoSlide()"
                         class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full shadow-md hover:bg-gray-900 transition">
                         ❮
                     </button>
-        
+
                     <!-- Tombol Berikutnya -->
                     <button @click="next(); stopAutoSlide(); startAutoSlide()"
                         class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full shadow-md hover:bg-gray-900 transition">
                         ❯
                     </button>
                 </div>
-        
+
                 <div class="text-center mt-5">
                     <button class="bg-blue-400 border text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
                         Cek Berita Lainnya
@@ -281,7 +285,7 @@
                 </div>
             </div>
         </section>
-                
+
     </main>
 
     <x-footer2></x-footer2>

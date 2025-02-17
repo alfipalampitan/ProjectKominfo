@@ -41,31 +41,33 @@
 
 
         <!-- Agenda Hari Ini -->
+
+        @php
+            $agenda = \App\Models\agendalandingpage::first();
+        @endphp
+
         <section class="container mx-auto px-4 py-10">
             <div class="flex flex-col-reverse sm:flex-row items-center">
                 <div data-aos="fade-right" class="w-full sm:w-1/2">
                     <h1 class="text-3xl sm:text-5xl font-bold text-center sm:text-right font-audiowide ">
-                        Agenda Hari Ini
+                        {{ $agenda->title }}
                     </h1>
                     <p class="mt-5 text-center sm:text-right font-mono">
-                        🚀 Agenda Teknologi Hari Ini: Menjelajahi Inovasi, Tren, dan Masa Depan Digital.
-                        Teknologi terus berkembang dengan pesat, menghadirkan peluang dan tantangan baru setiap harinya.
+                        {{ $agenda->description }}
                     </p>
 
                     <!-- Card Grid -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
                         <div class="card1">
-                            <img src="{{ asset('img/Poster teknologi.jpg') }}" alt="Logo" class="w-full rounded-lg">
-                            <h3 class="text-lg font-semibold text-center mt-2">Kembangkan Teknologi Raih Prestasi</h3>
-                            <p class="text-center text-gray-600 mt-2">Ayoo sama sama Membuat Teknologi jadi Makin
-                                Berkembang.</p>
+                            <img src="{{ asset('storage/' . $agenda->imgcard1) }}" alt="Logo" class="w-full rounded-lg">
+                            <h3 class="text-lg font-semibold text-center mt-2">{{ $agenda->titlecard1 }}</h3>
+                            <p class="text-center text-gray-600 mt-2">{{ $agenda->descriptioncard1 }}</p>
                         </div>
                         <div class="card1">
-                            <img src="{{ asset('img/melestarikan budaya di era digitalisasi.jpg') }}" alt="Logo"
+                            <img src="{{ asset('storage/' . $agenda->imgcard2) }}" alt="Logo"
                                 class="w-full rounded-lg">
-                            <h3 class="text-lg font-semibold text-center mt-2">Era Digital Bukan Halangan Bijak Gunakan
-                                Teknologi</h3>
-                            <p class="text-center text-gray-600 mt-2">Harus Selalu Bijak Untuk menggunakan Teknologi.
+                            <h3 class="text-lg font-semibold text-center mt-2">{{ $agenda->titlecard2 }}</h3>
+                            <p class="text-center text-gray-600 mt-2">{{ $agenda->descriptioncard2 }}
                             </p>
                         </div>
                     </div>
@@ -78,7 +80,7 @@
                 </div>
 
                 <div data-aos="fade-left" class="w-full sm:w-1/2 flex justify-center">
-                    <img src="{{ asset('img/gates-7584115_1280.png') }}" alt="Logo" class="w-full sm:w-8/12">
+                    <img src="{{ asset('storage/' . $agenda->image) }}" alt="Logo" class="w-full sm:w-8/12">
                 </div>
             </div>
         </section>

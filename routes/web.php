@@ -20,12 +20,6 @@ Route::get('/profile', function () {
     return view('profile',['title' => 'profile']);
 });
 
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', function () {
         return view('admin.admin'); // Sesuaikan dengan lokasi file Blade
@@ -37,6 +31,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/landing-page/update', [LandingPageController::class, 'update'])->name('admin.landing.update');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/agenda', [LandingPageController::class, 'agendaIndex'])->name('admin.agenda');
+    Route::post('/admin/agenda/update', [LandingPageController::class, 'agendaUpdate'])->name('admin.agenda.update');
+});
 
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', function () {

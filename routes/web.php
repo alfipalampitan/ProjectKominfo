@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\beritacontroller;
 use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+
 
 
 Route::get('/', function () {
@@ -34,6 +37,12 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/agenda', [LandingPageController::class, 'agendaIndex'])->name('admin.agenda');
     Route::post('/admin/agenda/update', [LandingPageController::class, 'agendaUpdate'])->name('admin.agenda.update');
+});
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('/berita', [beritacontroller::class, 'index'])->name('admin.berita.index');
+    Route::post('/berita', [beritacontroller::class, 'store'])->name('admin.berita.store');
+    Route::patch('/news/{id}/trending', [beritacontroller::class, 'toggleTrending'])->name('admin.berita.trending');
 });
 
 Route::prefix('admin')->group(function () {

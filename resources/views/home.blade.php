@@ -167,18 +167,25 @@
         </section>
 
         {{-- Berita hari Ini --}}
+
+        @php
+            $berita = \App\Models\berita::first();
+        @endphp
+
         <section class="pb-4">
             <div data-aos="fade-up" x-data="{
                 currentSlide: 0,
                 slidesToShow: 4,
                 containerWidth: 0,
                 slides: [
-                    { image: '{{ asset('img/Dirgahayu RI 79 Live Instagram Design Canva.jpg') }}', title: 'Hari Kemerdekaan', description: 'Ayo Rayakan Hari Kemerdekaan Republik Indonesia ke 79.' },
-                    { image: '{{ asset('img/melestarikan budaya di era digitalisasi.jpg') }}', title: 'Melestarikan Budaya', description: 'Jaga budaya kita tetap hidup di era digitalisasi.' },
-                    { image: '{{ asset('img/gates-7584115_1280.png') }}', title: 'Teknologi Masa Depan', description: 'Inovasi teknologi berkembang pesat.' },
-                    { image: '{{ asset('img/computer-8671934_1280.png') }}', title: 'Perkembangan AI', description: 'Artificial Intelligence semakin canggih.' },
-                    { image: '{{ asset('img/gates-7584115_1280.png') }}', title: 'Keamanan Siber', description: 'Lindungi data pribadimu dengan keamanan terbaru.' },
-                    { image: '{{ asset('img/gates-7584115_1280.png') }}', title: 'Dunia Digital', description: 'Internet membawa perubahan besar.' }
+                    { image: '{{ asset('storage/' . $berita->image) }}', title: '{{ $berita->title }}', description: '{{ $berita->description }}' },
+                    { image: '{{ asset('storage/' . $berita->image) }}', title: '{{ $berita->title }}', description: '{{ $berita->description }}' },
+                    { image: '{{ asset('storage/' . $berita->image) }}', title: '{{ $berita->title }}', description: '{{ $berita->description }}' },
+                    { image: '{{ asset('storage/' . $berita->image) }}', title: '{{ $berita->title }}', description: '{{ $berita->description }}' },
+                    { image: '{{ asset('storage/' . $berita->image) }}', title: '{{ $berita->title }}', description: '{{ $berita->description }}' },
+                    { image: '{{ asset('storage/' . $berita->image) }}', title: '{{ $berita->title }}', description: '{{ $berita->description }}' },
+                    { image: '{{ asset('storage/' . $berita->image) }}', title: '{{ $berita->title }}', description: '{{ $berita->description }}' },
+                    
                 ],
                 autoSlideInterval: null,
             

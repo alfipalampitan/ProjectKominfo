@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\LandingPage;
 use App\Models\agendalandingpage;
 use Illuminate\Support\Facades\Storage;
+use App\Models\berita;
 
 class LandingPageController extends Controller
 {
@@ -13,8 +14,9 @@ class LandingPageController extends Controller
     {
         $landingPage = LandingPage::first(); // Ambil data Landing Page
         $agenda = agendalandingpage::first(); // Ambil data Agenda (jika ada)
+        $berita = berita::orderBy('created_at', 'desc')->get(); // Ambil data Berita
 
-        return view('admin.landing', compact('landingPage', 'agenda'));
+        return view('admin.landing', compact('landingPage', 'agenda', 'berita'));
     }
 
     public function update(Request $request)
@@ -52,8 +54,9 @@ class LandingPageController extends Controller
     {
         $landingPage = LandingPage::first(); // Ambil data Landing Page
         $agenda = agendalandingpage::first(); // Ambil data Agenda (jika ada)
+        $berita = berita::orderBy('created_at', 'desc')->get(); // Ambil data Berita
 
-        return view('admin.landing', compact('landingPage', 'agenda'));
+        return view('admin.landing', compact('landingPage', 'agenda', 'berita'));
     }
 
     public function agendaUpdate(Request $request)

@@ -21,9 +21,6 @@
     <x-navbar></x-navbar>
     <main class="bg-white" style="box-sizing: border-box">
         <!-- Hero Section -->
-        @php
-            $landingPage = \App\Models\LandingPage::first();
-        @endphp
 
         <section class="flex flex-col sm:flex-row items-center container mx-auto px-4 py-10 mt-10">
             <div data-aos="fade-right" class="w-full sm:w-1/2 flex justify-center">
@@ -41,11 +38,6 @@
 
 
         <!-- Agenda Hari Ini -->
-
-        @php
-            $agenda = \App\Models\agendalandingpage::first();
-        @endphp
-
         <section class="container mx-auto px-4 py-10">
             <div class="flex flex-col-reverse sm:flex-row items-center">
                 <div data-aos="fade-right" class="w-full sm:w-1/2">
@@ -59,7 +51,8 @@
                     <!-- Card Grid -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
                         <div class="card1">
-                            <img src="{{ asset('storage/' . $agenda->imgcard1) }}" alt="Logo" class="w-full rounded-lg">
+                            <img src="{{ asset('storage/' . $agenda->imgcard1) }}" alt="Logo"
+                                class="w-full rounded-lg">
                             <h3 class="text-lg font-semibold text-center mt-2">{{ $agenda->titlecard1 }}</h3>
                             <p class="text-center text-gray-600 mt-2">{{ $agenda->descriptioncard1 }}</p>
                         </div>
@@ -107,12 +100,16 @@
 
                     <div x-data="{
                         currentSlide: 0,
-                        slides: [
-                            { image: '{{ asset('img/Poster teknologi.jpg') }}', title: 'Kembangkan Teknologi Raih Prestasi', description: 'Ayoo sama sama Membuat Teknologi jadi Makin Berkembang.' },
-                            { image: '{{ asset('img/melestarikan budaya di era digitalisasi.jpg') }}', title: 'Era Digital Bukan Halangan', description: 'Harus Selalu Bijak Untuk menggunakan Teknologi.' },
-                            { image: '{{ asset('img/gates-7584115_1280.png') }}', title: 'Teknologi Masa Depan', description: 'Inovasi teknologi berkembang pesat.' },
-                            { image: '{{ asset('img/computer-8671934_1280.png') }}', title: 'Perkembangan AI', description: 'Artificial Intelligence semakin canggih.' }
-                        ],
+                        slides: [],
+                        async fetchTrendingBerita() {
+                            const response = await fetch('/trending-Berita'); // Ambil data trending dari Laravel
+                            const data = await response.json();
+                            this.slides = data.map(Berita => ({
+                                image: Berita.image,
+                                title: Berita.title,
+                                description: Berita.description
+                            }));
+                        },
                         autoSlideInterval: null,
                         next() {
                             this.currentSlide = (this.currentSlide + 2) % this.slides.length;
@@ -126,8 +123,11 @@
                         stopAutoSlide() {
                             clearInterval(this.autoSlideInterval);
                         }
-                    }" x-init="startAutoSlide()"
+                    }" x-init="fetchTrendingBerita();
+                    startAutoSlide()"
                         class="relative w-full max-w-4xl mx-auto overflow-hidden mt-6">
+
+
 
                         <!-- Carousel Wrapper -->
                         <div class="flex transition-transform duration-500"
@@ -167,26 +167,12 @@
         </section>
 
         {{-- Berita hari Ini --}}
-
-        @php
-            $berita = \App\Models\berita::first();
-        @endphp
-
         <section class="pb-4">
             <div data-aos="fade-up" x-data="{
                 currentSlide: 0,
                 slidesToShow: 4,
                 containerWidth: 0,
-                slides: [
-                    { image: '{{ asset('storage/' . $berita->image) }}', title: '{{ $berita->title }}', description: '{{ $berita->description }}' },
-                    { image: '{{ asset('storage/' . $berita->image) }}', title: '{{ $berita->title }}', description: '{{ $berita->description }}' },
-                    { image: '{{ asset('storage/' . $berita->image) }}', title: '{{ $berita->title }}', description: '{{ $berita->description }}' },
-                    { image: '{{ asset('storage/' . $berita->image) }}', title: '{{ $berita->title }}', description: '{{ $berita->description }}' },
-                    { image: '{{ asset('storage/' . $berita->image) }}', title: '{{ $berita->title }}', description: '{{ $berita->description }}' },
-                    { image: '{{ asset('storage/' . $berita->image) }}', title: '{{ $berita->title }}', description: '{{ $berita->description }}' },
-                    { image: '{{ asset('storage/' . $berita->image) }}', title: '{{ $berita->title }}', description: '{{ $berita->description }}' },
-                    
-                ],
+                slides: {{ $berita->toJSON() }},
                 autoSlideInterval: null,
             
                 next() {
@@ -264,10 +250,13 @@
                                     </div>
                                     <div
                                         class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                                        <a href="#"
-                                            class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm shadow-md hover:bg-blue-700 transition-all duration-300">
-                                            Selengkapnya
-                                        </a>
+                                        <div x-data="{ link: {{ 'slide.link' }} }">
+                                            <a :href="link"
+                                                class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm shadow-md hover:bg-blue-700 transition-all duration-300">
+                                                Selengkapnya
+                                            </a>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -294,7 +283,6 @@
                 </div>
             </div>
         </section>
-
     </main>
 
     <x-footer2></x-footer2>

@@ -1,19 +1,16 @@
 <?php
 
-use App\Http\Controllers\beritacontroller;
-use App\Http\Controllers\LandingPageController;
+use App\Models\berita;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\beritacontroller;
+use App\Http\Controllers\LandingPageController;
 
 
 
-Route::get('/', function () {
-    return view('home');
-});
-
-Route::get('/home', function () {
-    return view('home');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/layanan', function () {
     return view('layanan',['title' => 'Layanan']);
@@ -34,16 +31,25 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/landing-page/update', [LandingPageController::class, 'update'])->name('admin.landing.update');
 });
 
+
 Route::middleware(['auth'])->group(function () {
-    Route::get('/admin/agenda', [LandingPageController::class, 'agendaIndex'])->name('admin.agenda');
-    Route::post('/admin/agenda/update', [LandingPageController::class, 'agendaUpdate'])->name('admin.agenda.update');
+    Route::get('/admin/agenda', [AgendaController::class, 'agendaIndex'])->name('admin.Agenda');
+    Route::post('/admin/agenda/update', [AgendaController::class, 'agendaUpdate'])->name('admin.agenda.update');
 });
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
-    Route::get('/berita', [beritacontroller::class, 'index'])->name('admin.berita.index');
+    Route::get('/berita', [beritacontroller::class, 'index'])->name('admin.Berita');
     Route::post('/berita', [beritacontroller::class, 'store'])->name('admin.berita.store');
     Route::patch('/news/{id}/trending', [beritacontroller::class, 'toggleTrending'])->name('admin.berita.trending');
 });
+
+Route::get('/trending-Berita', function () {
+    return response()->json(berita::where('is_trending', true)->get());
+});
+
+Route::delete('/admin/berita/{id}', [BeritaController::class, 'destroy'])->name('berita.destroy');
+
+
 
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', function () {

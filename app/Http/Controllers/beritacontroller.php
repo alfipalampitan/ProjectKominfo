@@ -12,9 +12,7 @@ class beritacontroller extends Controller
     public function index()
     {
         $berita = berita::orderBy('created_at', 'desc')->get();
-        $landingPage = LandingPage::first(); // Ambil data Landing Page
-        $agenda = agendalandingpage::first(); // Ambil data Agenda (jika ada)
-        return view('admin.landing', compact('berita', 'landingPage', 'agenda'));
+        return view('admin.Berita', compact('berita'));
     }
 
     public function create()
@@ -36,12 +34,12 @@ class beritacontroller extends Controller
         berita::create([
             'title' => $request->title,
             'description' => $request->description,
-            'image' => $imagePath,
+            'image' => asset('storage/' . $imagePath),
             'link' => $request->link,
             'is_trending' => false,
         ]);
 
-        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil ditambahkan!');
+        return redirect()->route('admin.Berita')->with('success', 'Berita berhasil ditambahkan!');
     }
 
     public function toggleTrending($id)
@@ -51,5 +49,20 @@ class beritacontroller extends Controller
         $berita->save();
 
         return response()->json(['success' => true, 'status' => $berita->is_trending]);
+    }
+
+    public function getTrendingBerita()
+    {
+        $trendingBerita = berita::where('is_trending', true)->get();
+        return response()->json($trendingBerita);
+    }
+
+
+    public function destroy($id)
+    {
+        $berita = Berita::findOrFail($id);
+        $berita->delete();
+
+        return response()->json(['success' => 'Berita berhasil dihapus dan ID direset.']);
     }
 }

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>@yield('title')</title>
+
 </head>
 <body class="bg-gray-100">
     <!-- Sidebar -->
@@ -12,13 +13,19 @@
         <div>
             <h2 class="text-xl font-bold">Admin Panel</h2>
             <ul class="mt-5">
-                <a href="{{ route('admin.dashboard') }}"><li class="py-2 px-4 hover:bg-blue-300 rounded">Dashboard</li></a> 
+                <a href="{{ route('admin.dashboard') }}"><li class="py-2 px-4 hover:bg-blue-300 rounded noactive">Dashboard</li></a> 
                 <a href="{{ route('admin.landing') }}">
-                    <li class="py-2 px-4 hover:bg-blue-300 rounded">Landing Page Build</li>
+                    <li class="py-2 px-4 hover:bg-blue-300 rounded noactive">Header Build</li>
                 </a>                                                      
-                <a href="{{ route('admin.users') }}"><li class="py-2 px-4 hover:bg-blue-300 rounded">User</li></a> 
-                <a href="{{ route('admin.settings') }}"><li class="py-2 px-4 hover:bg-blue-300 rounded">Settings</li></a> 
-                <a href="{{ route('admin.upload') }}"><li class="py-2 px-4 hover:bg-blue-300 rounded">Upload</li></a> 
+                <a href="{{ route('admin.Agenda') }}">
+                    <li class="py-2 px-4 hover:bg-blue-300 rounded noactive">Agenda Build</li>
+                </a>                                                      
+                <a href="{{ route('admin.Berita') }}">
+                    <li class="py-2 px-4 hover:bg-blue-300 rounded noactive">Berita Build</li>
+                </a>                                                      
+                <a href="{{ route('admin.users') }}"><li class="py-2 px-4 hover:bg-blue-300 rounded noactive">User</li></a> 
+                <a href="{{ route('admin.settings') }}"><li class="py-2 px-4 hover:bg-blue-300 rounded noactive">Settings</li></a> 
+                <a href="{{ route('admin.upload') }}"><li class="py-2 px-4 hover:bg-blue-300 rounded noactive">Upload</li></a> 
             </ul>
         </div>
 

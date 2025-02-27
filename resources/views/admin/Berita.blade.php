@@ -35,13 +35,26 @@
                             <td class="p-2">{{ Str::limit($item->description, 50) }}</td>
                             <td class="p-2"><a href="{{ $item->link }}" target="_blank"
                                     class="text-blue-500">Selengkapnya</a></td>
-                            <td class="p-2">
-                                <button
-                                    class="toggle-trending bg-{{ $item->is_trending ? 'green' : 'red' }}-500 text-white px-2 py-1 rounded"
-                                    data-id="{{ $item->id }}">
-                                    {{ $item->is_trending ? 'ON' : 'OFF' }}
-                                </button>
-                            </td>
+                                    <td class="p-2">
+                                        <button
+                                            class="toggle-trending relative w-16 h-8 flex items-center rounded-full transition-all duration-300 px-1 text-white shadow-lg transform active:scale-95 
+                                            bg-{{ $item->is_trending ? 'green' : 'red' }}-500"
+                                            data-id="{{ $item->id }}">
+                                            
+                                            <!-- Tombol Bulat -->
+                                            <span class="absolute w-6 h-6 bg-white rounded-full transition-all duration-300 shadow-md"
+                                                  style="left: {{ $item->is_trending ? 'calc(100% - 1.75rem)' : '0.25rem' }};"></span>
+                                            
+                                            <!-- Teks ON -->
+                                            <span class="absolute left-2 text-xs font-bold transition-all duration-300"
+                                                  style="opacity: {{ $item->is_trending ? '1' : '0' }}; color: #064e3b;">ON</span>
+                                    
+                                            <!-- Teks OFF -->
+                                            <span class="absolute right-2 text-xs font-bold transition-all duration-300"
+                                                  style="opacity: {{ $item->is_trending ? '0' : '1' }}; color: #7f1d1d;">OFF</span>
+                                        </button>
+                                    </td>
+                                    
                             <td class="p-2">
                                 <a href="#" class="text-blue-500" onclick="editNews({{ $item->id }})">Edit</a>
                                     <button onclick="confirmDelete({{ $item->id }})"

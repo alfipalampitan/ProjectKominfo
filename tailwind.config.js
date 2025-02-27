@@ -20,6 +20,10 @@ export default {
             },
         },
     },
+    safelist: [
+        'bg-red-500',
+        'bg-green-500'
+      ],
 
     plugins: [forms],
 };

@@ -5,7 +5,7 @@
 
 @section('content')
     <div class="container mx-auto px-4 py-10">
-        <h2 class="text-2xl font-bold mb-4">Manajemen Landing Page</h2>
+        <h2 class="text-2xl font-bold mb-4">Manajemen Header Landing Page</h2>
 
         @if (session('success'))
             <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg">

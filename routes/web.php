@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\beritacontroller;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingPageController;
 
 
@@ -21,11 +22,11 @@ Route::get('/profile', function () {
     return view('profile',['title' => 'profile']);
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/admin', function () {
-        return view('admin.dashboard'); // Sesuaikan dengan lokasi file Blade
-    })->name('admin.dashboard');
-});
+// Route::middleware(['auth'])->group(function () {
+//     Route::get('/admin', function () {
+//         return view('admin.dashboard'); // Sesuaikan dengan lokasi file Blade
+//     })->name('admin.dashboard');
+// });
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/landing-page', [LandingPageController::class, 'index'])->name('admin.landing');
@@ -56,12 +57,20 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
 Route::delete('/admin/berita/{id}', [BeritaController::class, 'destroy'])->name('berita.destroy');
 
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('admin');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    // Route::post('/users', [UserController::class, 'store'])->name('admin.users.store');
+    // Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+});
+
+
 
 
 Route::prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('admin.dashboard');
+    // })->name('admin.dashboard');
 
     // Route::get('/users', function () {
     //     return view('admin.users');

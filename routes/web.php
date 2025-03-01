@@ -3,6 +3,7 @@
 use App\Models\berita;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\beritacontroller;
 use App\Http\Controllers\LandingPageController;
@@ -22,7 +23,7 @@ Route::get('/profile', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', function () {
-        return view('admin.admin'); // Sesuaikan dengan lokasi file Blade
+        return view('admin.dashboard'); // Sesuaikan dengan lokasi file Blade
     })->name('admin.dashboard');
 });
 
@@ -47,6 +48,12 @@ Route::get('/trending-Berita', function () {
     return response()->json(berita::where('is_trending', true)->get());
 });
 
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('/users', [UserController::class, 'index'])->name('admin.users');
+    Route::post('/users', [UserController::class, 'store'])->name('admin.users.store');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+});
+
 Route::delete('/admin/berita/{id}', [BeritaController::class, 'destroy'])->name('berita.destroy');
 
 
@@ -56,9 +63,9 @@ Route::prefix('admin')->group(function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
-    Route::get('/users', function () {
-        return view('admin.users');
-    })->name('admin.users');
+    // Route::get('/users', function () {
+    //     return view('admin.users');
+    // })->name('admin.users');
 
     Route::get('/settings', function () {
         return view('admin.settings');

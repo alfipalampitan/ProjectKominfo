@@ -11,7 +11,7 @@ class berita extends Model
     use HasFactory;
 
     protected $table = 'berita';
-    protected $fillable = ['title', 'description', 'image', 'link', 'is_trending'];
+    protected $fillable = ['title', 'description', 'image', 'link', 'is_trending','category'];
 
 
 

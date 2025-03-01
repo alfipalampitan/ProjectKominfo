@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\berita;
-use App\Models\LandingPage;
-use App\Models\agendalandingpage;
+
 
 class beritacontroller extends Controller
 {
@@ -27,6 +26,7 @@ class beritacontroller extends Controller
             'description' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'link' => 'required|url',
+            'category' => 'required|string'
         ]);
 
         $imagePath = $request->file('image')->store('berita_images', 'public');
@@ -37,6 +37,7 @@ class beritacontroller extends Controller
             'image' => asset('storage/' . $imagePath),
             'link' => $request->link,
             'is_trending' => false,
+            'category' => $request->category,
         ]);
 
         return redirect()->route('admin.Berita')->with('success', 'Berita berhasil ditambahkan!');

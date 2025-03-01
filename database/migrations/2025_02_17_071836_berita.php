@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->string('image');
             $table->string('link');
             $table->boolean('is_trending')->default(false);
+            $table->string('category');
             $table->timestamps();
         });
     }

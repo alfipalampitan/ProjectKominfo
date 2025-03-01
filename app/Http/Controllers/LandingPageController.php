@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\LandingPage;
-use App\Models\agendalandingpage;
 use Illuminate\Support\Facades\Storage;
-use App\Models\berita;
 
 class LandingPageController extends Controller
 {

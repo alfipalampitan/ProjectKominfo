@@ -1,7 +1,7 @@
 @extends('admin.admin')
 
-@section('title', 'Manajemen Landing Page - Admin')
-@section('header', 'Manajemen Landing Page')
+@section('title', 'Manajemen Landing Page Header - Admin')
+@section('header', 'Manajemen  Header')
 
 @section('content')
     <div class="container mx-auto px-4 py-10">

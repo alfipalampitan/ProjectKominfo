@@ -27,7 +27,7 @@
                 <img src="{{ asset('storage/' . $landingPage->image) }}" alt="Logo" class="w-full sm:w-8/12">
             </div>
             <div data-aos="fade-left" class="w-full sm:w-1/2 text-center sm:text-left">
-                <h1 class="text-4xl sm:text-5xl font-bold uppercase font-audiowide">
+                <h1 class="text-4xl sm:text-5xl font-bold uppercase {{ session('font', 'font-sans') }}">
                     {{ $landingPage->title }}
                 </h1>
                 <p class="mt-5 font-mono">
@@ -41,7 +41,7 @@
         <section class="container mx-auto px-4 py-10">
             <div class="flex flex-col-reverse sm:flex-row items-center">
                 <div data-aos="fade-right" class="w-full sm:w-1/2">
-                    <h1 class="text-3xl sm:text-5xl font-bold text-center sm:text-right font-audiowide ">
+                    <h1 class="text-3xl sm:text-5xl font-bold text-center sm:text-right {{ session('font', 'font-sans') }} ">
                         {{ $agenda->title }}
                     </h1>
                     <p class="mt-5 text-center sm:text-right font-mono">
@@ -86,7 +86,7 @@
                     <img src="{{ asset('img/man-4365597_1920.png') }}" alt="Logo" class="w-full sm:w-8/12">
                 </div>
                 <div data-aos="fade-left" class="w-full sm:w-1/2">
-                    <h1 class="text-3xl sm:text-5xl font-bold text-center sm:text-left font-audiowide text-red-600 ">
+                    <h1 class="text-3xl sm:text-5xl font-bold text-center sm:text-left {{ session('font', 'font-sans') }} text-red-600 ">
                         Trending Hari Ini
                     </h1>
                     <p class="mt-5 text-center sm:text-left font-mono">
@@ -226,7 +226,7 @@
             })"
                 class="container mx-auto mt-8 px-4 sm:px-6 lg:px-8">
 
-                <h1 class="text-3xl sm:text-5xl font-bold text-center font-audiowide">
+                <h1 class="text-3xl sm:text-5xl font-bold text-center {{ session('font', 'font-sans') }}">
                     Berita kita hari ini
                 </h1>
 

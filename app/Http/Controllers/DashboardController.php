@@ -16,6 +16,14 @@ class DashboardController extends Controller
             'user' => User::where('role', 'user')->count(),
         ];
 
+        $categoryColors = [
+            'Teknologi' => 'bg-green',
+            'Politik' => 'text-blue-500',
+            'Olahraga' => 'text-red-600',
+            'Hiburan' => 'bg-blue',
+            'Umum' => 'bg-orange',
+        ];
+
         // Total jumlah berita
         $totalBerita = berita::count();
 
@@ -27,6 +35,6 @@ class DashboardController extends Controller
             $newsByCategory[$category] = berita::where('category', $category)->count();
         }
 
-        return view('admin.dashboard', compact('usersData', 'totalBerita', 'newsByCategory', 'categories'));
+        return view('admin.dashboard', compact('usersData', 'totalBerita', 'newsByCategory', 'categories','categoryColors'));
     }
 }

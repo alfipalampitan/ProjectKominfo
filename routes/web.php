@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\beritacontroller;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingPageController;
 
@@ -63,8 +64,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     // Route::post('/users', [UserController::class, 'store'])->name('admin.users.store');
     // Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
 });
-
-
 
 
 Route::prefix('admin')->group(function () {

@@ -25,7 +25,6 @@
                 </a>                                                      
                 <a href="{{ route('admin.users') }}"><li class="py-2 px-4 hover:bg-blue-300 rounded noactive">User</li></a> 
                 <a href="{{ route('admin.settings') }}"><li class="py-2 px-4 hover:bg-blue-300 rounded noactive">Settings</li></a> 
-                <a href="{{ route('admin.upload') }}"><li class="py-2 px-4 hover:bg-blue-300 rounded noactive">Upload</li></a> 
             </ul>
         </div>
 
